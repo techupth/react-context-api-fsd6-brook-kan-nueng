@@ -1,18 +1,20 @@
 import { useNavigate } from "react-router-dom";
 import AppHeader from "../components/AppHeader";
 import products from "../data/products.js";
-
+import { myContext } from "../App.jsx";
+import { useContext } from "react";
 function HomePage() {
+  let user = useContext(myContext)
   const navigate = useNavigate();
   return (
     <div>
       <div className="app-wrapper">
-        <AppHeader />
+        <AppHeader name={user.username}/>
       </div>
       <div className="product-list">
         {products.map((product) => {
           return (
-            <div className="product">
+            <div className="product" key={product.key}>
               <div className="product-preview">
                 <img
                   src="https://via.placeholder.com/250/250"
